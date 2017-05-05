@@ -1,0 +1,83 @@
+<div id="theContainer2" class="baPage">
+    <div class="theContainer2">
+        <div class="theContent2">
+		<form action="{$basedomain}baperformance" method="POST" id="formbaperformance" >
+        	<div class="col-content">
+                <div class="darkBox"> 
+                    <div class="short">
+                        <div class="date-range">
+                            <label style="padding:0;">Timespan&nbsp;<input type="text" class="half-width" name="startdate" id="datepicker" value="{$startdate}">
+                            <span>to</span>
+                            <input type="text" class="half-width" name="enddate" id="datepicker2" value="{$enddate}">
+                            <input type="submit" value="GO"/>
+                            </label>
+                            
+                        
+                        </div> 
+                    </div><!-- /.short -->
+                     
+                    <div class="darkBox-title">
+                        <h2 class="fl">Entourage Acquisition Achievements</h2>
+                        <div class="shorters fr">
+                                <a href="{$basedomain}entourage" class="icons icon-button-people fr">&nbsp;</a>
+							
+                        <a href="#" id="button2" class="button3 reject btn-orange fr">Rejected</a>
+                        <a href="#" id="button" class="button3 accept btn-green fr">Accepted</a>
+                    	</div><!-- /.shorters -->
+                    </div><!-- /.darkBox-title -->
+                    <div class="darkBox-content">
+                    	{if $acquisition}  
+								{$acquisition}
+						{else}                
+								You have No message!
+						{/if}	
+                    </div> <!-- /.darkBox-content -->
+                </div> <!-- /.darkBox -->
+                <div class="rows2">
+                    <div class="darkBox col3s">
+ 
+                      <div class="darkBox-content">
+                    		{$age_relevancy}
+                        </div> <!-- /.darkBox-content -->
+                    </div> <!-- /.darkBox -->
+                    <div class="darkBox col3s">
+                     
+                        <div class="darkBox-content">
+                    			{$brand_preference_relevancy}
+                        </div> <!-- /.darkBox-content -->
+                    </div> <!-- /.darkBox -->
+                    <div class="darkBox col3s">
+                       
+                        <div class="darkBox-content darkBox-title2">
+                    		  {$gender}
+                        </div> <!-- /.darkBox-content -->
+                    </div> <!-- /.darkBox -->
+                </div><!-- /.rows2 -->
+            </div><!-- /.col-content -->
+            <div class="col-sidebar">
+				{if $user->leaderdetail->type==1}	
+				{else}
+					<div class="selectBA">
+					 			<select class="baperformanceselecttor styled" name="uid"  >
+									<option value="0" >Select BA</option>
+									{foreach from=$badetail key=k item=v}
+										<option {if $uid==$v.ownerid}selected{/if} value="{$v.ownerid}" > {$v.name} {$v.last_name} </option>
+									{/foreach}	
+								</select>
+							
+						 
+					</div><!-- /.selectBA -->
+				{/if}
+				
+            </div><!-- /.col-sidebar -->
+		</form>
+        </div> <!-- /.theContent2 -->
+    </div> <!-- /.theContainer -->
+</div> <!-- /#theContainer -->
+{literal}
+<script>
+	$(document).on('change','.baperformanceselecttor',function(){
+		$("#formbaperformance").submit();
+	});
+</script>
+{/literal}

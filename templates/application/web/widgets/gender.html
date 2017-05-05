@@ -1,0 +1,128 @@
+	<script>
+	var thedata = {$entourage|@json_encode};
+		 
+		{literal}
+		$(function () {
+    
+        var colors = Highcharts.getOptions().colors,
+            categories = ['Female','Male'],
+            name = 'Age Relevancy',
+            data = [{
+                    y: 35.11,
+                    color: '#01acec',
+                    drilldown: {
+                        name: 'Male',
+                        categories: ['Male'],
+                        <!-- data: [thedata.gender.Male], -->
+                        data: [parseInt(thedata.gender.male,10)],
+						color: '#01acec',
+                    }
+                }, {
+                    y: 25.94,
+                    color: '#ee6da8',
+                    drilldown: {
+                        name: 'Female',
+                        categories: ['Female'],
+                        <!-- data: [thedata.gender.Female], -->
+                        data: [parseInt(thedata.gender.female,10)],
+                        color: '#ee6da8'
+					}
+                }];
+    
+    
+        // Build the data arrays
+        var browserData = [];
+        var versionsData = [];
+        for (var i = 0; i < data.length; i++) {
+    
+            
+            // add version data
+            for (var j = 0; j < data[i].drilldown.data.length; j++) {
+                var brightness = 0.2 - (j / data[i].drilldown.data.length) / 5 ;
+                versionsData.push({
+                    name: data[i].drilldown.categories[j],
+                    y: data[i].drilldown.data[j],
+                    color: Highcharts.Color(data[i].color).brighten(brightness).get()
+                });
+            }
+        }
+    
+        // Create the chart
+        $('#container2').highcharts({
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: ''
+            },
+            
+            plotOptions: {
+                pie: {
+                    shadow: false,
+                    center: ['50%', '50%']
+                },
+				 series: {
+                dataLabels: {
+                    enabled: true,
+                    formatter: function() {
+                        return Math.round(this.percentage*100)/100 + ' %';
+                    },
+                    distance: -10,
+                    color:'black'
+                }
+            }
+            },
+			credits:false
+			, 
+			exporting: {
+					 enabled: false
+			}
+			,
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f})<br/>',
+            }
+			,
+            series: [{
+                name: 'Age',
+                data: browserData,
+                size: '70%',
+                dataLabels: {
+                    formatter: function() {
+                        return this.y > 3 ? this.point.name : null;
+                    },
+                    color: 'white',
+                    distance: 30
+                }
+            }, {
+                name: 'Gender',
+                data: versionsData,
+                size: '80%',
+                innerSize: '50%',
+                dataLabels: {
+                    formatter: function() {
+                        // display only if larger than 1
+                         return this.y > 1 ? + Math.round(this.point.percentage) +'%'  : null;
+                    }
+                }
+            }]
+        });
+    });
+    
+{/literal}
+	</script>
+
+<h5 class="titleChart">Gender</h5>
+<div class="box-chart">
+    <div id="container2" class="thePie">
+    </div>
+</div>
+<div id="legend">
+    <div class="rowl">
+        <span class="rec lblue">&nbsp;</span>
+        <label>Male</label>
+    </div>
+    <div class="rowl">
+        <span class="rec lpink">&nbsp;</span>
+        <label>Female</label>
+    </div>
+</div>

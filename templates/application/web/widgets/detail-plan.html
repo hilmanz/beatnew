@@ -1,0 +1,79 @@
+{literal}
+<style>
+#selectfid{width:170px}
+</style>
+{/literal}
+<div id="theContainer2" class="planPage">
+    <div class="theContainer2">
+        <div class="theContent2">
+        	<div class="col-content">
+                <div class="theBox">
+                    <div class="theBox-title">
+                        <h2 class="fl">Detail {if $author.pagesdetail.plantype}{$author.pagesdetail.plantype}{/if} Plan</h2>
+                        <a class="btnback fr" onCLick="location.href='{$basedomain}plan'">&nbsp;</a>
+						<!-- <a class="button fl" onCLick="location.href='{$basedomain}plan'" >Reject Plan</a> -->
+                    </div><!-- /.theBox-title -->
+                    <div class="theBox-content">
+                        <div class="forms">
+                        		<table width="650" border="0" cellspacing="0" cellpadding="0" class="detailscontent">
+                                  <tr>
+                                    <td width="100"><label>Plan Name</label></td>
+                                    <td width="1">:</td>
+                                    <td><span>{$title}</span></td>
+                                  </tr>
+                                  <tr>
+                                    <td><label>Date</label></td>
+                                    <td width="1">:</td>
+                                    <td><span>{$dates}</span></td>
+                                  </tr>
+                                  <tr>
+                                    <td><label>Time</label></td>
+                                    <td width="1">:</td>
+                                    <td><span>{$times}</span></td>
+                                  </tr>
+                                  <tr>
+                                    <td><label>Venue</label></td>
+                                    <td width="1">:</td>
+                                    <td><span>{$brief}</span></td>
+                                  </tr>
+                                  <tr>
+                                    <td><label>Tagged</label></td>
+                                    <td width="1">:</td>
+                                    <td>
+                                        {if $friendtags}
+                                         <span>
+                                            {foreach from=$friendtags key=k item=v}											
+                                                {if $v.friendtype==1}<div>{math equation="$k+1"}. {$v.name} {$v.last_name}</div>{/if}
+                                            {/foreach}	
+                                        </span>
+                                        {/if}
+                                    </td>
+                                  </tr>
+								{*}
+								{if $author.pagesdetail.plantype=='Brand'}
+                                  <tr>
+                                    <td><label>Attachment</label></td>
+                                    <td width="1">:</td>
+                                    <td><span> <img src="{$image_full_path}" /></span></td>
+                                  </tr>
+								{/if}
+								{/*}
+								{if $author.pagesdetail.plantype=='Co-Creation'}
+                                  <tr>
+                                    <td><label>Poster</label></td>
+                                    <td width="1">:</td>
+                                    <td><span> {if $file}<a href="{$basedomain}public_assets/attachment/{$file}" >attachment file</a>{else} do not have attachment {/if}</span></td>
+                                  </tr>
+								{/if}
+                                </table>
+                          
+                        </div> <!-- /.forms -->
+                    </div> <!-- /.theBox-content -->
+                </div> <!-- /.theBox -->
+            </div><!-- /.col-content -->
+            <div class="col-sidebar">
+            		{include file="application/web/widgets/sidebar-widget.html"}
+            </div><!-- /.col-sidebar -->
+        </div> <!-- /.theContent2 -->
+    </div> <!-- /.theContainer -->
+</div> <!-- /#theContainer -->

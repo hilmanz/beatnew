@@ -1,0 +1,56 @@
+<div id="theContainer2" class="baPage">
+    <div class="theContainer2">
+	<form action="{$basedomain}entourage" method="POST" class="formbaperformance"  id="shorter"  >
+        <div class="theContent2">
+		
+        	<div class="col-content">
+                <div class="darkBox mb20">
+                    <div class="darkBox-title">
+                        <h2 class="fl">Entourages</h2>
+                        <div class="shorter3">
+                                                 	
+                                <span><input type="radio" class="styled" name="filter" value="" {if $filter==''}checked{/if}/> &nbsp;All</span>
+                            	
+                                <span><input type="radio" class="styled" name="filter"  value="accept" {if $filter=='accept'}checked{/if} /> &nbsp;Approved</span>
+                            	
+                                <span><input type="radio" class="styled" name="filter" value="reject" {if $filter=='reject'}checked{/if} /> &nbsp;Rejected</span>
+                            	
+                                <span><input type="radio" class="styled" name="filter"  value="pending" {if $filter=='pending'}checked{/if} /> &nbsp;Pending</span>
+                            	
+                                <span><input type="radio" class="styled" name="filter" value="engagement" {if $filter=='engagement'}checked{/if} /> &nbsp;Engagement <!--<input type="submit" value="GO"/>--></span>
+								
+                            
+                        </div><!-- /.shorter -->
+                    </div><!-- /.darkBox-title -->
+                </div> <!-- /.darkBox -->
+               {$entourage_list}
+            </div><!-- /.col-content -->
+            <div class="col-sidebar">
+			{if $user->leaderdetail->type==1}
+			{else}
+            	<div class="selectBA">
+					 			<select class="baperformanceselecttor styled" name="uid"  >
+									<option value="0" >Select BA</option>
+									{foreach from=$badetail key=k item=v}
+										<option {if $uid==$v.ownerid}selected{/if} value="{$v.ownerid}" > {$v.name} {$v.last_name} </option>
+									{/foreach}	
+								</select>
+							
+						 
+					</div><!-- /.selectBA -->
+			{/if}
+            </div><!-- /.col-sidebar -->
+        </div> <!-- /.theContent2 -->
+		</form>
+    </div> <!-- /.theContainer -->
+</div> <!-- /#theContainer -->
+{literal}
+<script>
+	$(document).on('change','.baperformanceselecttor',function(){
+		$(".formbaperformance").submit();
+	});
+	$(document).on('click','.radio',function(){
+		$(".formbaperformance").submit();
+	});
+</script>
+{/literal}

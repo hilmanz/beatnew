@@ -1,0 +1,221 @@
+{literal}
+<style>
+#selectfid{width:170px}
+#selectfidbrand{width:170px}
+#selectfidarea{width:170px}
+#selectfidpl{width:170px}
+#selectfidba{width:170px}
+</style>
+{/literal}
+<div id="theContainer2" class="galleryPage">
+    <div class="theContainer2">
+        <div class="theContent2">
+        	<div class="col-content">
+                <div class="theBox register-box2">
+                    <div class="theBox-title">
+                        <h2 class="fl">USER UPDATE</h2>
+                       
+                    </div><!-- /.theBox-title -->
+                    <div class="theBox-content">
+                        <div class="forms">
+                        	<a class="btnback" href="{$basedomain}register" ></a>
+<form style="overflow:hidden;" class="former" id="registerent" action="{$basedomain}service/registeruserwebsite/register"  method="POST" >
+				<div class="formRegister2">
+                   	<div class="col2s">
+                    	<div class="rows2">
+                        	<label class="bluecolor">ROLE</label><br />
+                            <div class="selectRegister">
+                                <select name="role" >
+                                        <option value="SBA_1" {if $pagetype==1}selected{/if} > SBA </option>
+                                        <option value="PL_2" {if $pagetype==2}selected{/if} > PL </option>
+                                        <option value="AREA_5" {if $pagetype==5}selected{/if} > AREA </option>
+                                        <option value="BRAND_3" {if $pagetype==3}selected{/if} > BRAND </option>
+                                        <option value="IS_6" {if $pagetype==6}selected{/if} > IS </option>
+                                        <option value="121_4" {if $pagetype==4}selected{/if} > 121 </option>
+                                        <option value="AGENCY_100" {if $pagetype==100}selected{/if} > AGENCY </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rows2">
+                        	<label class="bluecolor">OTHER BRAND </label>	
+                             <div class="selectRegister"> 				
+                                 <select name="brandsubid"  class="brandsubid">
+                                        <option value="0" {if $brandsubid==0}selected{/if}> - </option>
+                                        <option value="4" {if $brandsubid==4}selected{/if}>AMILD</option>
+                                        <option value="5" {if $brandsubid==5}selected{/if}>MARLBORO</option>								
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rows2 lineState">
+                        	<label class="bluecolor">AREA LEADER</label>
+                             <div class="selectRegister">
+                             <select name="areaid"  class="areaid">
+                                    <option value="0" > - </option>
+                            </select>
+                            </div>
+
+                        </div>
+                        <div class="rows2">
+                        	 <label>NAME</label><br /><input class="inputRegister" type="text" name="name" value="{$name}" />
+                        </div>
+                        <div class="rows2">
+                        	<label>NICKNAME</label> <input class="inputRegister" type="text" name="nickname" value="{$nickname}"  />
+	
+                        </div>
+                        <div class="rows2">
+                        	<label>USERNAME</label><input class="inputRegister" type="text" name="username" value="{$username}" disabled="disabled" />
+                        </div>
+                        <div class="rows2">
+                        	<label>NEW PASSWORD</label><input class="inputRegister" type="password" name="password" value=""  />
+                        </div>
+                    
+                   	</div><!-- /.col2s -->
+                   	<div class="col2s col2s-last">
+                    	<div class="rows2">
+                        	<label class="bluecolor">BRAND</label>
+                            <div class="selectRegister"> 		
+                            <select name="brandid"  class="brandid">
+                                    <option value="0" {if $brandid==0}selected{/if}> - </option>
+                                    <option value="4" {if $brandid==4}selected{/if}>AMILD</option>
+                                    <option value="5" {if $brandid==5}selected{/if}>MARLBORO</option>								
+                            </select>
+                            </div>
+                        </div>
+                        <div class="rows2">
+                        	<label class="bluecolor">AREA</label>
+                             <div class="selectRegister">	
+                                <select name="city" >
+                                        <option value=""  {if $city==0}selected{/if}> NOT USED </option>
+                                        <option value="215" {if $city==215}selected{/if} > JAKARTA </option>
+                                        <option value="407"  {if $city==407}selected{/if} > SURABAYA </option>
+                                        <option value="140" {if $city==140}selected{/if} > BANDUNG </option>									
+                                        <option value="292" {if $city==292}selected{/if} > MEDAN </option>
+                                        <option value="451" {if $city==451}selected{/if} > JOGJA </option>
+                                        <option value="199" {if $city==199}selected{/if} > BALI </option>
+                                        <option value="318" {if $city==318}selected{/if} > PALEMBANG </option>
+                                </select>
+                             </div>
+                        </div>
+                        <div class="rows2 lineState">
+                        	<label class="bluecolor">PL</label>
+                            <div class="selectRegister">
+                            <select name="otherid" class="otherid" >
+                                    <option value="0" > - </option>			
+                            </select>
+                            </div>
+                        </div>
+                        <div class="rows2">
+                        	<label>LASTNAME</label><input class="inputRegister" type="text" name="lastname"  value="{$last_name}" />
+                        </div>
+                        <div class="rows2">
+                        	<label>GENDER</label><br />  					
+                        	<input type="radio" name="sex" value="Male" {if $sex=='Male'}checked{/if} /> MALE 
+                        	<input type="radio" name="sex" value="Female" {if $sex=='Female'}checked{/if} /> FEMALE
+                        </div>
+                        <div class="rows2 passwordrows">
+                        	<label>EMAIL</label><input class="inputRegister" type="text" name="emailnottoedit" value="{$email}"  disabled="disabled" />
+							
+                        </div>
+                        <div class="rows2">
+                        	<label class="confirmPass">CONFIRM PASSWORD</label> <input class="inputRegister" type="password" name="repassword" />
+                        </div>
+                    
+                	</div><!-- /.col2s -->
+                </div> <!-- /.formRegister2 -->
+				<div style="padding:10px;border-collapse:collapse;">   
+				<input type="hidden" value="1" name="register">
+				<input  type="hidden" name="email" value="{$email}"   />
+				</div>
+				<input type="hidden" value="1" name="edit">
+                <input class="button update-button fr" type="submit" value="Update">
+                </div>
+				 
+				  
+				  
+				</form>
+				
+                        </div> <!-- /.forms -->
+                    </div> <!-- /.theBox-content -->
+                </div> <!-- /.theBox -->
+            </div><!-- /.col-content -->
+          
+        </div> <!-- /.theContent2 -->
+    </div> <!-- /.theContainer -->
+</div> <!-- /#theContainer -->
+
+<div id="popup-message">
+    <h3></h3>
+    <a class="button close-popup-message" href="{$basedomain}register">OK</a>
+</div>
+<div id="bg-popups"></div>
+
+
+<script>
+var otherid = "{$otherid}";
+var areaid = "{$areaid}";
+
+{literal}
+
+var servicedomain = basedomain+"service/";
+
+	var updateoptions = {
+						dataType : "html",
+						beforeSubmit: function(data) {
+                             $("#bg-popups").fadeIn();
+                            $("#popup-message h3").html('Loading...');
+                             $("#popup-message").fadeIn();
+                             $(".close-popup-message").hide();
+                                        //$('#kluardisini').html("<blink>loading please wait</blink>");
+                            },
+                        success : function(data) {  
+                            $("#bg-popups").fadeIn();
+                            $("#popup-message h3").html(data);
+                            $("#popup-message").fadeIn();
+                            $(".close-popup-message").show();
+                                    // $('#kluardisini').html("<p>"+data+"</p>");
+                        }
+					};					
+					
+
+$("#registerent").ajaxForm(updateoptions );
+
+
+$(document).ready(function(){
+	
+	
+			
+			$.post(servicedomain+'registeruserwebsite/getleader',{leadertype:2},function(data){
+				var html ="<option value='0' > - </option>";
+				$.each(data,function(i,e){
+					if(otherid==e.id) html+="<option value='"+e.id+"' selected >"+e.name+" "+e.last_name+" "+e.pagename+"</option>";
+					else html+="<option value='"+e.id+"' >"+e.name+" "+e.last_name+" "+e.pagename+"</option>";
+				})
+				$(".otherid").html(html);
+			},"JSON")
+		/*	
+			$.post(servicedomain+'registeruserwebsite/getleader',{leadertype:3},function(data){
+				var html ="<option value='0' > - </option>";
+				$.each(data,function(i,e){
+					html+="<option value='"+e.id+"' >"+e.name+" "+e.last_name+" "+e.pagename+"</option>";
+				})
+				$(".brandid").html(html);
+				$(".brandsubid").html(html);
+			},"JSON")
+			*/
+			$.post(servicedomain+'registeruserwebsite/getleader',{leadertype:5},function(data){
+				var html ="<option value='0' > - </option>";
+				$.each(data,function(i,e){
+					if(areaid==e.id)html+="<option value='"+e.id+"' selected >"+e.pagename+"</option>";
+					else html+="<option value='"+e.id+"' >"+e.pagename+"</option>";
+				})
+				$(".areaid").html(html);
+			},"JSON")
+			
+	
+	
+});
+
+
+</script>
+
+{/literal}

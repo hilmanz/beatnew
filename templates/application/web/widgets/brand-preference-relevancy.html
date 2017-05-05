@@ -1,0 +1,144 @@
+	<script>
+	var thedata =   {$entourage|@json_encode};
+		 
+		
+		
+		{literal}
+		 $(document).ready(function () {
+		    var chart;
+        var colors = Highcharts.getOptions().colors,
+            categories = ['Our Brand', 'Other HMS/PMI','Competitor'],
+            name = 'Brand Relevancy',
+            data = [{
+                    y: 35.11,
+                    color: '#ee1c25',
+                    drilldown: {
+                        name: 'Our Brand',
+                        categories: ['Our Brand'],
+                        data: [parseInt(thedata.brand.Our,10)],
+                        
+                        color: '#ee1c25'
+                    }
+                }, {
+                    y: 25.94,
+                      color: '#c6b098',
+                    drilldown: {
+                        name: 'Competitor',
+                        categories: ['Competitor'],
+						data: [parseInt(thedata.brand.Competitor,10)],
+                      
+                        color: '#c6b098'
+                    }
+                },{
+                    y: 18.14,
+                    color: '#00aeef',
+                    drilldown: {
+						name: 'Other HMS/PMI',
+                        categories: ['Other HMS/PMI'],
+						data: [parseInt(thedata.brand.PMI,10)],
+                       
+                        color: '#00aeef'
+                    }
+                }];
+    
+    
+        // Build the data arrays
+        var browserData = [];
+        var versionsData = [];
+        for (var i = 0; i < data.length; i++) {
+    
+            
+            // add version data
+            for (var j = 0; j < data[i].drilldown.data.length; j++) {
+                var brightness = 0.2 - (j / data[i].drilldown.data.length) / 5 ;
+                versionsData.push({
+                    name: data[i].drilldown.categories[j],
+                    y: data[i].drilldown.data[j],
+                    color: Highcharts.Color(data[i].color).brighten(brightness).get()
+                });
+            }
+        }
+    
+        // Create the chart
+        $('#container3').highcharts({
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: ''
+            },
+            
+            plotOptions: {
+                pie: {
+                    shadow: true,
+                    center: ['50%', '50%']
+                },
+				 series: {
+                dataLabels: {
+                    enabled: true,
+                    formatter: function() {
+                        return Math.round(this.percentage*100)/100 + ' %';
+                    },
+                    distance: -10,
+                    color:'black'
+                }
+            }
+            },
+			credits:false
+			, 
+			exporting: {
+					 enabled: false
+			}
+			,
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <br><b>{point.percentage:.1f}%</b> ({point.y:,.0f})<br/>',
+            }
+			,
+            series: [{
+                name: 'Brand',
+                data: browserData,
+                size: '70%',
+                dataLabels: {
+                    formatter: function() {
+                        return this.y > 3 ? this.point.name : null;
+                    },
+                    color: 'white',
+                    distance: 30
+                }
+            }, {
+                name: 'Brand Relevancy',
+                data: versionsData,
+				size: '80%',
+                innerSize: '50%',
+                dataLabels: {
+                    formatter: function() {
+                         return this.y > 1 ? + Math.round(this.point.percentage) +'%'  : null;                   
+						 }
+                }
+            }]
+        });
+    });
+    
+{/literal}
+	</script>
+
+<h5 class="titleChart">Brand Relevancy</h5>
+<div class="box-chart">
+    <div id="container3" class="thePie">
+    </div>
+</div>
+<div id="legend">
+    <div class="rowl">
+        <span class="rec lred">&nbsp;</span>
+        <label>Our Brand</label>
+    </div>
+    <div class="rowl">
+        <span class="rec lblue">&nbsp;</span>
+        <label>Other HMS/PMI</label>
+    </div>
+    <div class="rowl">
+        <span class="rec lbrown">&nbsp;</span>
+        <label>Competitor</label>
+    </div>
+</div>
+ 
